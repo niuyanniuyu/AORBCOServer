@@ -1,45 +1,32 @@
 package com.aorbco.aorbcoserver.utils;
 
+import com.aorbco.aorbcoserver.AorbcoServerApplication;
+import com.aorbco.aorbcoserver.config.SocketConfig;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.net.Socket;
 
 /**
  * @author Ben
  */
 @Slf4j
-@Component
 public final class SocketUtil {
-
-    private static String socketHost;
-
-    @Value("${socket.host}")
-    public void setSocketHost(String val) {
-        socketHost = val;
-    }
-
-    @Value("${socket.port}")
-    private static int socketPort;
-
     private static byte[] buf = new byte[1024];
-
 
     private static Socket socket;
 
     static {
         try {
-            socket = new Socket(socketHost, socketPort);
-            byte[] buf = new byte[128];
+            socket = new Socket(AorbcoServerApplication.ca.getBean(SocketConfig.class).getHost(), AorbcoServerApplication.ca.getBean(SocketConfig.class).getPort());
 
             if ("connect server successfully!".equals(recv())) {
                 log.info("已与网站Ego服务建立连接！");
             } else {
                 throw new RuntimeException("与网站Ego服务建立连接失败！");
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
         }
     }
