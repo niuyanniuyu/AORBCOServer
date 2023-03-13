@@ -5,10 +5,6 @@ import com.hankcs.hanlp.HanLP;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.util.List;
 
 /**
  * @author Ben
