@@ -12,7 +12,7 @@ import java.net.Socket;
  */
 @Slf4j
 @Component
-public final class SocketUtils {
+public final class SocketUtil {
 
     private static String socketHost;
 

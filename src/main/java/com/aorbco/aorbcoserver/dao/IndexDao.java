@@ -1,2 +1,10 @@
-package com.aorbco.aorbcoserver.Dao;public class IndexDao {
+package com.aorbco.aorbcoserver.dao;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class IndexDao {
+
+
+
 }
