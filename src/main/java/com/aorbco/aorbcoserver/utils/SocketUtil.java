@@ -41,6 +41,9 @@ public final class SocketUtil {
 
     public static void send(String str) {
         try {
+            while (socket==null){
+                Thread.sleep(1000);
+            }
             socket.getOutputStream().write(str.getBytes());
         } catch (Exception e) {
             log.error(e.getMessage());

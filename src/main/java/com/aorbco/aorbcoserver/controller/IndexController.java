@@ -1,6 +1,6 @@
 package com.aorbco.aorbcoserver.controller;
 
-import com.aorbco.aorbcoserver.service.BaseService;
+import com.aorbco.aorbcoserver.service.serviceImpl.BaseServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 public class IndexController {
 
     @Resource
-    BaseService indexService;
+    BaseServiceImpl indexService;
 
     @RequestMapping({"/","/index"})
     public String index(){

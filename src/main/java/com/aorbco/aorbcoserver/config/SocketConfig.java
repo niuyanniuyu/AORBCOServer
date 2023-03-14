@@ -1,11 +1,11 @@
 package com.aorbco.aorbcoserver.config;
 
-
-import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Ben
+ */
 @ConfigurationProperties(prefix = "socket")
 @Component
 public class SocketConfig {
