@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>与客服1聊天中</title>
+    <title>AORBCO模型网眼系统</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
@@ -10,8 +10,16 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" th:href="@{/css/chat.css}">
     <script th:src="@{/js/jquery.js}"></script>
+    <style>
+        body {
+            background: url("[[@{/}]]image/AORBCOicon.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+    </style>
 </head>
 <body>
+
 <div class="chat-wrapper">
     <div id="btn_open" class="chat-support-btn" draggable="true"><!-- 聊天窗口缩小后的头像图标 -->
         <img th:src='@{image/bgmStart.jpg}'/>
@@ -31,7 +39,8 @@
         <div class="chat-header">
             <i id="btn_close" class="chat-close">></i>
             <div class="chat-service-info">
-                <a class="chat-service-img"></a>
+                <img th:src='@{image/xatu.png}' class="chat-service-img"/>
+                <!--                <a class="chat-service-img"></a>-->
                 <div class="chat-service-title">
                     <p class="chat-service-name">客户Ego</p>
                     <p class="chat-service-detail">基于AORBCO模型开发</p>
@@ -55,8 +64,8 @@
             </div>
         </div>
         <div class="header-info-div">
-            <h2 class="header-info-h2">客户Ego1</h2>
-            <span class="header-info-span">基于AORBCO模型开发</span>
+            <h2 class="header-info-h2">AORBCO模型</h2>
+            <span class="header-info-span">由罗钧旻教授团队开发研制</span>
         </div>
     </div>
 </div>
@@ -157,8 +166,7 @@
             nodeSpan = d.createElement('span')
         nodeTime = d.createElement('p');
         value = value.replace(/(((ht|f)tps?):\/\/)?([A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*)/g, function (content) {
-            return "<a href='http://" + content + "' class='chat-address' target='view_window' style='color:#6666cc '>" + content + '</a>';
-            ;
+            return "<a href='" + content + "' class='chat-address' target='view_window' style='color:#6666cc' onclick=\"onclickUrl('" + content + "')\">" + content + '</a>';
         });
         nodeP.classList.add('chat-' + name + '-contain');
         nodeSpan.classList.add('chat-' + name + '-text', 'chat-text');
@@ -171,7 +179,7 @@
         chatContain.scrollTop = chatContain.scrollHeight;
     }
 
-    createInfo('service', '您好'); /*发送第一句话*/
+    createInfo('service', 'https://www.baidu.com'); /*发送第一句话*/
     var timer,
         timerId,
         flagInput = false;
@@ -286,6 +294,17 @@
     function submityouText(text) {
         $.ajax({
             url: "/sendMes?text=" + text, success: function (result) {
+                var tmpArr = result.split('&&&&');
+                for (let i = 0; i < tmpArr.length; i++) {
+                    createInfo('service', tmpArr[i]);
+                }
+            }
+        });
+    }
+
+    function onclickUrl(url) {
+        $.ajax({
+            url: "/onclickUrl?url=" + url, success: function (result) {
                 var tmpArr = result.split('&&&&');
                 for (let i = 0; i < tmpArr.length; i++) {
                     createInfo('service', tmpArr[i]);

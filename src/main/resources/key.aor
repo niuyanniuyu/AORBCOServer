@@ -1,6 +1,10 @@
 #通用
-NEEDRESEND=客户Ego暂时没有理解，请重新输入
-
+NEEDRESEND=客户Ego暂时没有理解，请重新输入。
+PLACEHOLDER=卍
+S=成功
+AP=熟人偏好
+G=组
+JG=加入组
 
 #请求
 MNQ=我叫
@@ -10,9 +14,34 @@ HIAQ=你好，我是
 ILQ=我喜欢
 MFIQ=我的朋友是
 MAI=我的熟人是
+N=需要
+O=好的
+WAY=你是谁？
 
 
 #回复
 HIA=你好，。
 NEWHIA=你好，首次见面，。
 DISCRIMINATEACQA=这是我识别到的熟人。
+UTGPFTTBPEYPTHMEMY=暂时无法生成偏好，请输入您的偏好以帮助网眼Ego对您建模。
+ATTPIPYPI=根据以往交互过程，您的偏好是：。
+SFHNOTIOMETRFA=部分领域未获取到网眼Ego信息，能够推荐的领域有：。
+MEHNIYKIYPFYCCPOECAEWHYGSAK=网眼Ego暂时未收录您偏好领域的知识。您可更换偏好或者输入内容，Ego将帮您产生摘要及关键字。
+TFATSCOSAOC=以下是部分关注领域的具体内容:
+SA=熟人卍添加成功。
+AF=熟人卍添加失败。
+NTRTPOA=需要推荐熟人的偏好吗？
+EHEPFY=Ego已为您建立偏好卍。
+IDN=我没懂。
+ACHNP=所有熟人都没有偏好。
+TKOAYAPFHNBIINEFTTB=网眼Ego暂时未收录您所有熟人偏好领域的知识。
+TFARBA=以下是熟人为您推荐内容：
+TPITFITMITGH=该领域偏好是卍，群组内成员有：。
+NTJTG=需要加入该群组吗？
+YHJTG=您已加入群组卍。
+TPIOTLCBPBTMEODTTQT=网眼Ego或因查询超时无法提供该链接的偏好信息。
+IMCE=我是客户Ego。
+
+我是张丽
+我的熟人是张三
+需要

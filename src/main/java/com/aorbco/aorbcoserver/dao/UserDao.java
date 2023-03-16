@@ -1,71 +1,29 @@
 package com.aorbco.aorbcoserver.dao;
 
 import com.aorbco.aorbcoserver.model.User;
-import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author Ben
  */
-@Repository
-public class UserDao {
-    private final Map<String, User> userMap = new HashMap<>();
+public interface UserDao {
+    public User findUserByName(String name);
 
-    {
-        User user = new User();
+    public boolean addUserPreferences(String name, List<String> preferences);
 
-        user.setUserName("张三");
-        List<String> preference = new LinkedList<>();
-        preference.add("自然语言处理");
-        user.setUserPreference(preference);
-        userMap.put(user.getUserName(), user);
+    public boolean removeUserPreferences(String name, List<String> preferences);
 
-        user.setUserName("李四");
-        preference.clear();
-        preference.add("机器视觉");
-        user.setUserPreference(preference);
-        userMap.put(user.getUserName(), user);
-    }
+    public boolean removeUserAllPreferences(String name);
 
-    public User findUserByName(String name) {
-        return userMap.getOrDefault(name, null);
-    }
+    public void updateUserPreferencesScore(String name);
 
-    public boolean addUserPreferences(String name, List<String> preferences) {
-        User user = findUserByName(name);
-        if (user == null) {
-            return false;
-        } else {
-            user.getUserPreference().addAll(preferences);
-            return true;
-        }
-    }
+    public void insertUser(String name);
 
-    public boolean removeUserPreferences(String name, List<String> preferences) {
-        User user = findUserByName(name);
-        if (user == null) {
-            return false;
-        } else {
-            List<String> userPreference = user.getUserPreference();
-            Iterator<String> iterator = userPreference.iterator();
-            while (iterator.hasNext()) {
-                String next = iterator.next();
-                if (preferences.contains(next)) {
-                    iterator.remove();
-                }
-            }
-            return true;
-        }
-    }
+    public String insertAcquaintance(String name, String acquaintanceName);
 
-    public boolean removeUserAllPreferences(String name) {
-        User user = findUserByName(name);
-        if (user == null) {
-            return false;
-        } else {
-            user.getUserPreference().clear();
-            return true;
-        }
-    }
+    public String deleteAcquaintance(String name, String acquaintanceName);
+
+    public Set<String> getAllAcquaintance(String name);
 }

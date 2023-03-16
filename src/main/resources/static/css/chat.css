@@ -125,7 +125,8 @@ body {
     height: 150px;
     margin: -600px 0 0 -300px;
     border-radius: 4px;
-    background-image: url("images/bg.jpeg");
+    background: rgba(255, 215, 000, 0.3);
+    /*background-image: url("images/bg.jpeg");*/
 }
 
 .header-info-h2 {
@@ -167,7 +168,6 @@ body {
     color: #000;
     border-radius: 50%;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
-    background-image: url("images/h.jpg");
 }
 
 .chat-service-title {
@@ -176,7 +176,7 @@ body {
 }
 
 .chat-service-detail {
-    font-size: 12px;
+    font-size: 7px;
 }
 
 /*对话框内容*/
@@ -192,7 +192,7 @@ body {
     display: inline-block;
     position: relative;
     padding: 10px;
-    max-width: 120px;
+    max-width: 300px;
     color: black;
     white-space: pre-wrap;
     border: 1px solid #ffff7d;
@@ -218,6 +218,7 @@ body {
 
 .chat-address {
     display: inline-block;
+    /*max-width: 100px;*/
     max-width: 100px;
     white-space: pre-wrap;
 }
