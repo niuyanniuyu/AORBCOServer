@@ -10,6 +10,7 @@ import com.aorbco.aorbcoserver.service.LoginService;
 import com.aorbco.aorbcoserver.service.PushService;
 import com.aorbco.aorbcoserver.service.UserService;
 import com.aorbco.aorbcoserver.utils.ContextUtil;
+import com.aorbco.aorbcoserver.utils.SimilarityUtil;
 import com.hankcs.hanlp.HanLP;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class BaseServiceImpl implements BaseService {
 
     public String processMes(String text) {
         //嵌入逻辑处理 ---->
-        if (text.startsWith(ServerConstant.KEY_MAP.get("MNQ")) || text.startsWith(ServerConstant.KEY_MAP.get("HMNQ")) || text.startsWith(ServerConstant.KEY_MAP.get("IAQ")) || text.startsWith(ServerConstant.KEY_MAP.get("HIAQ"))) {
+        if (text.startsWith(ServerConstant.KEY_MAP.get("MNQ")) || text.startsWith(ServerConstant.KEY_MAP.get("HMNQ")) || text.startsWith(ServerConstant.KEY_MAP.get("IAQ")) || text.startsWith(ServerConstant.KEY_MAP.get("HIAQ")) || SimilarityUtil.docVectorModel.similarity(text, ServerConstant.KEY_MAP.get("HIAQ")) > ServerConstant.SIMILARITY_NUM) {
             String pre = loginService.userLogin(text);
             if (!ServerConstant.KEY_MAP.get("NEEDRESEND").equals(pre)) {
                 StringBuilder sb = new StringBuilder(pre);
@@ -77,7 +78,7 @@ public class BaseServiceImpl implements BaseService {
             }
 
             return loginService.userLogin(pre);
-        } else if (text.startsWith(ServerConstant.KEY_MAP.get("MAI")) || text.startsWith(ServerConstant.KEY_MAP.get("MFIQ"))) {
+        } else if (text.startsWith(ServerConstant.KEY_MAP.get("MAI")) || text.startsWith(ServerConstant.KEY_MAP.get("MFIQ"))|| SimilarityUtil.docVectorModel.similarity(text,ServerConstant.KEY_MAP.get("MAI"))>ServerConstant.SIMILARITY_NUM|| text.startsWith(ServerConstant.KEY_MAP.get("MFIQ"))|| SimilarityUtil.docVectorModel.similarity(text,ServerConstant.KEY_MAP.get("MFIQ"))>ServerConstant.SIMILARITY_NUM) {
             List<String> acquaintances = userService.identificationSubject(text);
             StringBuilder sb = new StringBuilder();
             int i = 0;
@@ -146,10 +147,13 @@ public class BaseServiceImpl implements BaseService {
             } else {
                 return ServerConstant.KEY_MAP.get("NEEDRESEND");
             }
-
-        } else if (text.equals(ServerConstant.KEY_MAP.get("WAY"))) { //杂项问答
+        } else if (text.equals(ServerConstant.KEY_MAP.get("WAY")) || (SimilarityUtil.docVectorModel.similarity(text, ServerConstant.KEY_MAP.get("WAY")) > ServerConstant.SIMILARITY_NUM)) { //杂项问答
             return ServerConstant.KEY_MAP.get("IMCE");
+        } else if (text.equals(ServerConstant.KEY_MAP.get("WCYD")) || (SimilarityUtil.docVectorModel.similarity(text, ServerConstant.KEY_MAP.get("WCYD")) > ServerConstant.SIMILARITY_NUM)) {
+            return ServerConstant.KEY_MAP.get("ICHYRTCIYPFAEKAPAECFTA");
         }
+
+
         return ServerConstant.KEY_MAP.get("NEEDRESEND");
 
 
@@ -166,8 +170,6 @@ public class BaseServiceImpl implements BaseService {
             Set<String> groupMembers = userGroupDao.findGroupMembersByGroupName(preferenceName + ServerConstant.KEY_MAP.get("G"));
             if (groupMembers != null) {
                 StringBuilder sb = new StringBuilder(ServerConstant.KEY_MAP.get("TPITFITMITGH").replace(ServerConstant.KEY_MAP.get("PLACEHOLDER"), preferenceName + ServerConstant.KEY_MAP.get("G")));
-                //TODO 待删除
-                System.out.println(sb.toString());
                 int i = 0;
                 for (String name : groupMembers) {
                     if (i++ != 0) {

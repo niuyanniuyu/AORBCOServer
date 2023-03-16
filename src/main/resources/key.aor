@@ -17,6 +17,8 @@ MAI=我的熟人是
 N=需要
 O=好的
 WAY=你是谁？
+WCYD=你能做什么？
+我想要
 
 
 #回复
@@ -41,6 +43,7 @@ NTJTG=需要加入该群组吗？
 YHJTG=您已加入群组卍。
 TPIOTLCBPBTMEODTTQT=网眼Ego或因查询超时无法提供该链接的偏好信息。
 IMCE=我是客户Ego。
+ICHYRTCIYPFAEKAPAECFTA=我可以帮你推荐偏好领域内容，对文章提取关键词、摘要、短语以及情感分类等功能。
 
 我是张丽
 我的熟人是张三

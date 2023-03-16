@@ -27,8 +27,8 @@ public class IndexController {
     @RequestMapping({"/sendMes"})
     @ResponseBody
     public String sendMes(String text) {
-        //return CoreSynonymDictionary.rewrite(indexService.processMes(text));
-        return indexService.processMes(text);
+        return CoreSynonymDictionary.rewrite(indexService.processMes(text));
+//        return indexService.processMes(text);
     }
 
     /**

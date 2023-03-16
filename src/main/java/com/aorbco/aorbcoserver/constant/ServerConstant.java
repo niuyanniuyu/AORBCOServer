@@ -19,6 +19,8 @@ public class ServerConstant {
 
     public static final String CAESURA_SIGN = "、";
 
+    public static final double SIMILARITY_NUM = 0.5;
+
     public static Map<String, String> KEY_MAP;
 
     static {
